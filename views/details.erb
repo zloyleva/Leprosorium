@@ -1,9 +1,18 @@
-<h4>Post details</h4>
+<h2>Post details</h2>
 
-<% @results.each do |post| %>
 <p>
-<%= post['content'] %><br>
-<span class="small">Added at: <%= post['created_date']%></span><br>
-<a href="/details/<%= post['id'] %>">Comments</a>
+	<%= @row['content'] %><br>
+	<span class="small">Added at: <%= @row['created_date']%></span><br>
+	<a href="/details/<%= @row['id'] %>">Comments</a>
 </p>
-<% end %>
+<br/>
+
+<h4>Add comments to post</h4>
+
+<p>
+	<form action="/details/<%= @row['id'] %>" method="POST" role="form">
+		<textarea name="content" class="form-control" rows="6" placeholder="Type comment text here" class="form-control"></textarea>
+		<button type="submit" class="btn btn-primary">Add comment</button>
+	</form>
+
+</p>
