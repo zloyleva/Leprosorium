@@ -1,0 +1,9 @@
+<h4>Post details</h4>
+
+<% @results.each do |post| %>
+<p>
+<%= post['content'] %><br>
+<span class="small">Added at: <%= post['created_date']%></span><br>
+<a href="/details/<%= post['id'] %>">Comments</a>
+</p>
+<% end %>
