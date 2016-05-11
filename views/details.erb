@@ -2,13 +2,22 @@
 
 <p>
 	<%= @row['content'] %><br>
-	<span class="small">Added at: <%= @row['created_date']%></span><br>
-	<a href="/details/<%= @row['id'] %>">Comments</a>
+	<span class="small"><em>Added at: <%= @row['created_date']%></em></span><br>
 </p>
 <br/>
 
-<h4>Add comments to post</h4>
+<% if @comments.size > 0 %>
+<hr>
+	<% @comments.each do |post| %>
+		<p>
+		<em><%= post['content'] %></em><br>
+		<span class="small"><em>Added at: <%= post['created_date']%></em></span><br>
+		</p>
+	<% end %>
+<% end %>
 
+
+<h4>Add comments to post</h4>
 <p>
 	<form action="/details/<%= @row['id'] %>" method="POST" role="form">
 		<textarea name="content" class="form-control" rows="6" placeholder="Type comment text here" class="form-control"></textarea>
