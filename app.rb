@@ -50,6 +50,6 @@ post '/new' do
 		return erb :new
 	end
 
-	erb "Thanks! Your post added."
+	redirect to '/'
 end
 
