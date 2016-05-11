@@ -11,11 +11,13 @@ def init_db
 end
 
 before do
+	#инициализация БД для каждой страницы
 	db = init_db
 end
 
 configure do
 	db = init_db
+	#Создать таблицу если она не существует
 	db.execute 'CREATE TABLE IF NOT EXISTS "Posts" 
 				(
 					"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -25,7 +27,7 @@ configure do
 end
 
 get '/' do
-	erb "Hello! Stranger"			
+	erb "Hello! Stranger. Welcome to our blog!"			
 end
 
 get '/new' do
