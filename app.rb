@@ -8,20 +8,19 @@ require 'sqlite3'
 
 def init_db
 	#процедура инициализации БД
-	db = SQLite3::Database.new 'leprosorium.db'
-	db.results_as_hash = true
-	return db
+	@db = SQLite3::Database.new 'leprosorium.db'
+	@db.results_as_hash = true
 end
 
 before do
 	#инициализация БД для каждой страницы
-	db = init_db
+	init_db
 end
 
 configure do
-	db = init_db
+	init_db
 	#Создать таблицу если она не существует
-	db.execute 'CREATE TABLE IF NOT EXISTS "Posts" 
+	@db.execute 'CREATE TABLE IF NOT EXISTS "Posts" 
 				(
 					"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
 					"created_date" DATE, 
@@ -40,6 +39,9 @@ end
 post '/new' do
 
 	content = params[:content]
+
+	
+
 	if content.size < 1
 		@error = 'Enter text of your post'
 		return erb :new
