@@ -40,13 +40,13 @@ post '/new' do
 
 	content = params[:content]
 
-	
+	@db.execute 'insert into Posts (created_date, content) values (datetime(), ?)',[content]
 
 	if content.size < 1
 		@error = 'Enter text of your post'
 		return erb :new
 	end
 
-	erb "Other"
+	erb "Thanks! Your post added."
 end
 
